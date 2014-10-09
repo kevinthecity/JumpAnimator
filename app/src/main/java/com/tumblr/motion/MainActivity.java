@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 			final ImageView homeIcon = HomeIconJump.getHomeIcon(MainActivity.this);
 			if (homeIcon != null) {
 
-				ScaleAnimation scaleAnim = new ScaleAnimation(1f, 1.5f, 1f, 1.5f,
+				final ScaleAnimation scaleAnim = new ScaleAnimation(1f, 1.5f, 1f, 1.5f,
 						homeIcon.getWidth() / 2, homeIcon.getHeight() / 2);
 				scaleAnim.setDuration(300);
 				scaleAnim.setRepeatMode(Animation.REVERSE);
