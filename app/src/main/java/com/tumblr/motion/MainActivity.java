@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 
-			final ImageView homeIcon = Util.getHomeIcon(MainActivity.this);
+			final ImageView homeIcon = HomeIconJump.getHomeIcon(MainActivity.this);
 			if (homeIcon != null) {
 
 				ScaleAnimation scaleAnim = new ScaleAnimation(1f, 1.5f, 1f, 1.5f,

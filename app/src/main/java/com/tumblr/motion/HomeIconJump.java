@@ -1,10 +1,17 @@
 package com.tumblr.motion;
 
+import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.ImageView;
 import com.tumblr.motion.jumpAnim.JumpAnimator;
 
 import java.util.Random;
 
+/**
+ * Example of how to use the JumpAnimator to animate the Home icon.
+ */
 public class HomeIconJump implements JumpAnimator.Jump {
 
 	private MainActivity mActivity;
@@ -36,8 +43,35 @@ public class HomeIconJump implements JumpAnimator.Jump {
 	public int[] getEndLoc() {
 		final int[] endLoc = new int[2];
 		if (mActivity != null) {
-			Util.getHomeIcon(mActivity).getLocationOnScreen(endLoc);
+			getHomeIcon(mActivity).getLocationOnScreen(endLoc);
 		}
 		return endLoc;
+	}
+
+	/**
+	 * Get the home icon from an Activity.
+	 *
+	 * @param activity
+	 * @return
+	 */
+	public static ImageView getHomeIcon(Activity activity) {
+		// Defensive
+		if (activity == null || activity.getActionBar() == null) {
+			return null;
+		}
+
+		ImageView homeIcon = null;
+		final Resources res = Resources.getSystem();
+
+		// Hack #1: search for the "android.id.home" field. (This works for <= 4.4)
+		if (res != null) {
+			int actionBarUpId = res.getIdentifier("home", "id", "android");
+			View upView = activity.findViewById(actionBarUpId);
+			if (upView instanceof ImageView) {
+				homeIcon = (ImageView) upView;
+			}
+		}
+
+		return homeIcon;
 	}
 }
